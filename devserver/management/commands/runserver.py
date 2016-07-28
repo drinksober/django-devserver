@@ -149,7 +149,7 @@ class Command(BaseCommand):
                 debug.technical_500_response = null_technical_500_response
 
         self.stdout.write("Validating models...\n\n")
-        self.validate(display_num_errors=True)
+        self.check(display_num_errors=True)
         self.stdout.write((
             "Django version %(version)s, using settings %(settings)r\n"
             "Running django-devserver %(devserver_version)s\n"
@@ -201,7 +201,7 @@ class Command(BaseCommand):
             if use_werkzeug:
                 run_simple(
                     self.addr, int(self.port), DebuggedApplication(app, True),
-                    use_reloader=False, use_debugger=True)
+                    use_reloader=True, use_debugger=True)
             else:
                 run(self.addr, int(self.port), app, mixin, ipv6=self.use_ipv6)
 
